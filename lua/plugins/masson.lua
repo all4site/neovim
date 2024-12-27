@@ -8,12 +8,12 @@ return {
 
     {
         'williamboman/mason-lspconfig.nvim',
-        build = ':MasonUpdate',
-        cmd = { "LspInstall", "LspUninstall" },
-        opts = {
+        config= function() 
+        require("mason-lspconfig").setup {
             automatic_installation = true,
-            ensure_installed = { "lua_ls", "ts_ls", "html", "cssls", "cssmodules_ls" }
+            ensure_installed = {  "lua_ls", "ts_ls", "html", "cssls", "cssmodules_ls" },
         }
+    end
     },
     {
         "zapling/mason-conform.nvim",
