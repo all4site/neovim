@@ -42,37 +42,40 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.smartindent = true
-vim.cmd [[autocmd BufEnter * set fo-=c fo-=r fo-=o]]
+vim.cmd([[autocmd BufEnter * set fo-=c fo-=r fo-=o]])
 -- Fillchars
 vim.opt.fillchars = {
-  vert = "│",
-  fold = "⠀",
-  eob = " ",   -- suppress ~ at EndOfBuffer
-  -- diff = "⣿", -- alternatives = ⣿ ░ ─ ╱
-  msgsep = "‾",
-  foldopen = "▾",
-  foldsep = "│",
-  foldclose = "▸"
+	vert = "│",
+	fold = "⠀",
+	eob = " ", -- suppress ~ at EndOfBuffer
+	-- diff = "⣿", -- alternatives = ⣿ ░ ─ ╱
+	msgsep = "‾",
+	foldopen = "▾",
+	foldsep = "│",
+	foldclose = "▸",
 }
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
 augroup YankHighlight
 autocmd!
 autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=300}
 augroup end
-]], false)
+]],
+	false
+)
 vim.api.nvim_create_autocmd("VimEnter", { command = "Neotree toggle" })
 vim.diagnostic.config({ virtual_text = false })
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-vim.api.nvim_create_user_command('TSRemoveUnusedImports', function()
-  vim.lsp.buf.execute_command({
-    command = "_typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-  })
+vim.api.nvim_create_user_command("TSRemoveUnusedImports", function()
+	vim.lsp.buf.execute_command({
+		command = "_typescript.organizeImports",
+		arguments = { vim.api.nvim_buf_get_name(0) },
+	})
 end, { desc = "Remove unused imports in TypeScript files" })
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
-  pattern = "*",
-  callback = function()
-    vim.cmd("SessionSave")
-  end,
+	pattern = "*",
+	callback = function()
+		vim.cmd("SessionSave")
+	end,
 })
