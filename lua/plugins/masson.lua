@@ -11,7 +11,15 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				automatic_installation = true,
-				ensure_installed = { "lua_ls", "ts_ls", "html", "cssls", "cssmodules_ls", "css_variables" },
+				ensure_installed = {
+					"lua_ls",
+					"ts_ls",
+					"html",
+					"cssls",
+					"cssmodules_ls",
+					"css_variables",
+					"somesass_ls",
+				},
 			})
 		end,
 	},
