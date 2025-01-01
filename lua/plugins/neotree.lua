@@ -7,12 +7,10 @@ return {
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 		"MunifTanjim/nui.nvim",
 	},
-
 	opts = {
 		close_if_last_window = true,
-		--auto_clean_after_session_restore = false,
+		popup_border_style = "single",
 		window = {
-
 			width = 30,
 			mappings = {
 				["o"] = "open",
@@ -62,7 +60,7 @@ return {
 		},
 		-- Add this section only if you've configured source selector.
 		source_selector = {
-			winbar = true,
+			winbar = false,
 			--        statusline = true,
 			sources = {
 				{ source = "filesystem", display_name = " 󰉓 Files" },

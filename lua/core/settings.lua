@@ -79,3 +79,5 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		vim.cmd("SessionSave")
 	end,
 })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none", fg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none", fg = "none" })
