@@ -15,6 +15,8 @@ return {
 			mappings = {
 				["o"] = "open",
 				["<space>"] = false,
+				["/"] = "fuzzy_sorter",
+				["#"] = "fuzzy_finder",
 			},
 		},
 		default_component_configs = {
@@ -71,6 +73,20 @@ return {
 		filesystem = {
 			follow_current_file = true,
 			hijack_netrw_behavior = "open_current",
+			filtered_items = {
+				visible = true, -- Keep hidden files visible if needed
+				hide_dotfiles = false, -- Set to true to hide dotfiles
+				hide_gitignored = true, -- Hide files that are git-ignored
+				hide_by_name = {
+					".git",
+					"node_modules",
+					".DS_Store",
+				},
+				hide_by_pattern = {
+					"*.log",
+					"*.bak",
+				},
+			},
 			use_libuv_file_watcher = true,
 		},
 	},
