@@ -11,7 +11,7 @@ return {
 
 			"dcampos/nvim-snippy",
 			"dcampos/cmp-snippy",
-			"honza/vim-snippets",
+			-- "honza/vim-snippets",
 
 			"onsails/lspkind.nvim",
 		},
@@ -104,8 +104,8 @@ return {
 				}),
 				sources = cmp.config.sources({
 					--{ name = 'luasnip' },
-					{ name = "nvim_lsp" }, -- For vsnip users.
 					{ name = "snippy" },
+					{ name = "nvim_lsp" }, -- For vsnip users.
 				}, {
 					{ name = "buffer" },
 					{ name = "nvim_lsp_signature_help" },

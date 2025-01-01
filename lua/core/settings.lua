@@ -68,7 +68,7 @@ vim.diagnostic.config({ virtual_text = false })
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.api.nvim_create_user_command("TSRemoveUnusedImports", function()
 	vim.lsp.buf.execute_command({
-		command = "_typescript.organizeImports",
+		command = "typescript.organizeImports",
 		arguments = { vim.api.nvim_buf_get_name(0) },
 	})
 end, { desc = "Remove unused imports in TypeScript files" })
