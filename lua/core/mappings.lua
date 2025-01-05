@@ -7,6 +7,21 @@ function switchNeotree()
 	end
 end
 
+--Search and replace
+vim.keymap.set({ "n" }, "<leader>rs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts)
+vim.keymap.set("n", "<leader>ro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts)
+vim.keymap.set("n", "<leader>rw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts)
+vim.keymap.set("n", "<leader>rW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts)
+vim.keymap.set("n", "<leader>re", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts)
+vim.keymap.set("n", "<leader>rf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts)
+
+vim.keymap.set("v", "<leader>rs", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", opts)
+vim.keymap.set("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts)
+vim.keymap.set("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts)
+
+--Yank
+vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", { desc = "Yank" })
+
 -- Buffer
 vim.keymap.set("n", "<leader>c", ":bp|sp|bn|bd<CR>", { desc = "Buffer close" })
 vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>")
@@ -30,6 +45,11 @@ vim.keymap.set(
 	"<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
 	{ desc = "Comment multiple line" }
 )
+--Move lines
+vim.keymap.set("n", "<leader>k", ":MoveLine(-1)<CR>", { desc = "Move line up" })
+vim.keymap.set("n", "<leader>j", ":MoveLine(1)<CR>", { desc = "Move line down" })
+vim.keymap.set("v", "<leader>k", ":MoveBlock(-1)<CR>", { desc = "Move line up" })
+vim.keymap.set("v", "<leader>j", ":MoveBlock(1)<CR>", { desc = "Move line down" })
 
 -- Navigation
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
@@ -42,7 +62,7 @@ vim.keymap.set("n", "|", ":vsplit<CR>")
 vim.keymap.set("n", "\\", ":split<CR>")
 
 -- Other
-vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Write file" })
+vim.keymap.set("n", "<leader>w", ":w|e<CR>", { desc = "Write file" })
 vim.keymap.set("n", "<leader>q", ":q|q<CR>", { desc = "Quit" })
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("i", "jk", "<Esc>")
@@ -56,6 +76,7 @@ vim.keymap.set("n", "<leader>tv", ":ToggleTerm direction=vertical size=40<CR>", 
 -- Telescope
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 vim.keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", { desc = "Find word" })
+vim.keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { desc = "Find old files" })
 
 -- Lazygit
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Lazygit" })
@@ -83,7 +104,8 @@ end, { expr = true, desc = "Codeium clear" })
 -- vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<leader>li", "<cmd>TSRemoveUnusedImports<cr>", { desc = "Remove unused imports" })
+vim.keymap.set("n", "<leader>lr", "<cmd>TSRemoveUnusedImports<cr>", { desc = "Remove unused imports" })
+vim.keymap.set("n", "<leader>la", "<cmd>TSAddAutoImports<cr>", { desc = "Add auto imports" })
 vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Show diagnostics" })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
@@ -118,8 +140,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		--     vim.lsp.buf.format()
 		-- end, { desc = 'Format file' })
 		vim.keymap.set("n", "<leader>lf", "<cmd>Format<cr>", { buffer = ev.buf, desc = "Format file" })
-		vim.keymap.set("n", "<leader>la", function()
+		vim.keymap.set("n", "<leader>lc", function()
 			vim.lsp.buf.code_action()
-		end, { buffer = ev.buf, desc = "Code action" })
+		end, { desc = "Code action" })
 	end,
 })

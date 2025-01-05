@@ -17,6 +17,13 @@ return {
 				["/"] = "fuzzy_sorter",
 				["#"] = "fuzzy_finder",
 			},
+			fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
+				["<down>"] = "move_cursor_down",
+				["<C-j>"] = "move_cursor_down",
+				["<up>"] = "move_cursor_up",
+				["<C-k>"] = "move_cursor_up",
+				-- ['<key>'] = function(state, scroll_padding) ... end,
+			},
 		},
 		default_component_configs = {
 			icon = {
@@ -73,7 +80,7 @@ return {
 			follow_current_file = true,
 			hijack_netrw_behavior = "open_current",
 			filtered_items = {
-				visible = true, -- Keep hidden files visible if needed
+				visible = false, -- Keep hidden files visible if needed
 				hide_dotfiles = false, -- Set to true to hide dotfiles
 				hide_gitignored = true, -- Hide files that are git-ignored
 				hide_by_name = {

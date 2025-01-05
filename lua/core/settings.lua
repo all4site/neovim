@@ -18,9 +18,13 @@ vim.opt.shell = "/bin/zsh"
 vim.opt.swapfile = false
 vim.opt.cursorline = true -- Подсветка строки с курсором
 vim.opt.termguicolors = true
+
 -- Mouse
 vim.opt.mouse = "a"
 vim.opt.mousefocus = true
+
+--Auto session
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Line Numbers
 vim.opt.number = true
@@ -66,13 +70,20 @@ augroup end
 vim.api.nvim_create_autocmd("VimEnter", { command = "Neotree toggle" })
 vim.diagnostic.config({ virtual_text = false })
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+--Adding custom commands
+
+--Remove unused imports
 vim.api.nvim_create_user_command("TSRemoveUnusedImports", function()
-	vim.lsp.buf.execute_command({
-		command = "typescript.organizeImports",
-		arguments = { vim.api.nvim_buf_get_name(0) },
-	})
+	vim.lsp.buf.code_action({ apply = true, context = { only = { "source.removeUnused.ts" }, diagnostics = {} } })
 end, { desc = "Remove unused imports in TypeScript files" })
 
+--Add auto imports
+vim.api.nvim_create_user_command("TSAddAutoImports", function()
+	vim.lsp.buf.code_action({ apply = true, context = { only = { "source.addMissingImports.ts" }, diagnostics = {} } })
+end, { desc = "Add auto imports in TypeScript files" })
+
+-- Save session on exit
 vim.api.nvim_create_autocmd("VimLeavePre", {
 	pattern = "*",
 	callback = function()
