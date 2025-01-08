@@ -30,8 +30,7 @@ snippet fi 'form input'
 
 
 snippet dv 'div with class'
-	<div className="${1}">${2}</div>
-
+	<div className={${1}}>${2}</div>
 
 snippet html "dangerouslySetInnerHTML"
 	dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(${1})}}
@@ -271,7 +270,7 @@ snippet ud "update data"
 	}
 
 snippet cn "class name"
-	className={$one$}
+	className={${1}}
 
 snippet mim 'mongoose import module'
 	MongooseModule.forFeature([
@@ -305,3 +304,5 @@ snippet mm "mongoose module"
 	]),
 	
 
+snippet fs 'form split component'
+	<FormSplit title={'${1}'}>

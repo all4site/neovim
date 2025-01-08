@@ -8,15 +8,14 @@ function switchNeotree()
 end
 
 --Search and replace
-vim.keymap.set({ "n" }, "<leader>rs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts)
 vim.keymap.set("n", "<leader>ro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts)
 vim.keymap.set("n", "<leader>rw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts)
 vim.keymap.set("n", "<leader>rW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts)
 vim.keymap.set("n", "<leader>re", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts)
 vim.keymap.set("n", "<leader>rf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts)
 
-vim.keymap.set("v", "<leader>rs", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", opts)
-vim.keymap.set("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts)
+vim.keymap.set("v", "<C-s>", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", opts)
+vim.keymap.set("v", "<leader>rs", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts)
 vim.keymap.set("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts)
 
 --Yank
@@ -27,9 +26,10 @@ vim.keymap.set("n", "<leader>c", ":bp|sp|bn|bd<CR>", { desc = "Buffer close" })
 vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>")
 vim.keymap.set("n", "<s-Tab>", ":BufferLineCyclePrev<CR>")
 vim.keymap.set("n", "<leader>bc", ":bd<CR>", { desc = "Current buffer close" })
-vim.keymap.set("n", "<leader>bl", ":BufferLinePick<CR>")
+vim.keymap.set("n", "<leader>bl", ":Buffer line Pick<CR>")
 vim.keymap.set("n", "<leader>bd", ":BufferLinePickClose<CR>", { desc = "Buffer pick close" })
 vim.keymap.set("n", "<leader>ba", ":w|%bd|e#|bd#|NeoTreeShow<CR>", { desc = "Buffer close all except current" })
+vim.keymap.set("n", "<leader>bx", ":bufdo bp|sp|bn|bd<CR>", { desc = "Close all" })
 
 -- NeoTree
 vim.keymap.set("n", "<leader>e", ":Neotree focus toggle<CR>", { desc = "Neotree focus" })
@@ -46,10 +46,10 @@ vim.keymap.set(
 	{ desc = "Comment multiple line" }
 )
 --Move lines
-vim.keymap.set("n", "<leader>k", ":MoveLine(-1)<CR>", { desc = "Move line up" })
-vim.keymap.set("n", "<leader>j", ":MoveLine(1)<CR>", { desc = "Move line down" })
-vim.keymap.set("v", "<leader>k", ":MoveBlock(-1)<CR>", { desc = "Move line up" })
-vim.keymap.set("v", "<leader>j", ":MoveBlock(1)<CR>", { desc = "Move line down" })
+vim.keymap.set("n", "<A-k>", ":MoveLine(-1)<CR>", { desc = "Move line up" })
+vim.keymap.set("n", "<A-j>", ":MoveLine(1)<CR>", { desc = "Move line down" })
+vim.keymap.set("v", "<A-k>", ":MoveBlock(-1)<CR>", { desc = "Move line up" })
+vim.keymap.set("v", "<A-j>", ":MoveBlock(1)<CR>", { desc = "Move line down" })
 
 -- Navigation
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
@@ -62,7 +62,7 @@ vim.keymap.set("n", "|", ":vsplit<CR>")
 vim.keymap.set("n", "\\", ":split<CR>")
 
 -- Other
-vim.keymap.set("n", "<leader>w", ":w|e<CR>", { desc = "Write file" })
+vim.keymap.set("n", "<leader>w", ":wa|e<CR>", { desc = "Write file" })
 vim.keymap.set("n", "<leader>q", ":q|q<CR>", { desc = "Quit" })
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("i", "jk", "<Esc>")
@@ -125,6 +125,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = "Show declaration" })
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Show implementation" })
 		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "Signature help" })
+		vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename" })
 
 		-- vim.keymap
 		-- .set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, { noremap = true })

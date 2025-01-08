@@ -70,25 +70,3 @@ augroup end
 vim.api.nvim_create_autocmd("VimEnter", { command = "Neotree toggle" })
 vim.diagnostic.config({ virtual_text = false })
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
---Adding custom commands
-
---Remove unused imports
-vim.api.nvim_create_user_command("TSRemoveUnusedImports", function()
-	vim.lsp.buf.code_action({ apply = true, context = { only = { "source.removeUnused.ts" }, diagnostics = {} } })
-end, { desc = "Remove unused imports in TypeScript files" })
-
---Add auto imports
-vim.api.nvim_create_user_command("TSAddAutoImports", function()
-	vim.lsp.buf.code_action({ apply = true, context = { only = { "source.addMissingImports.ts" }, diagnostics = {} } })
-end, { desc = "Add auto imports in TypeScript files" })
-
--- Save session on exit
-vim.api.nvim_create_autocmd("VimLeavePre", {
-	pattern = "*",
-	callback = function()
-		vim.cmd("SessionSave")
-	end,
-})
--- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none", fg = "none" })
--- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none", fg = "none" })
