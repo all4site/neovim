@@ -9,27 +9,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		end, 400)
 
 		vim.defer_fn(function()
-			vim.cmd([[Format]])
-		end, 1000)
-
-		vim.defer_fn(function()
 			-- После того, как автоимпорты добавлены, сохраняем файл
 			vim.cmd("wa")
 		end, 1500)
-	end,
-})
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = vim.api.nvim_create_augroup("Format and save scss", { clear = true }),
-	pattern = { "*.scss" },
-	callback = function(args)
-		-- require("conform").format({ bufnr = args.buf })
-		vim.defer_fn(function()
-			vim.cmd([[Format]])
-		end, 100)
-		vim.defer_fn(function()
-			-- После того, как автоимпорты добавлены, сохраняем файл
-			vim.cmd("wa")
-		end, 3200)
 	end,
 })
 

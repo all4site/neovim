@@ -6,7 +6,6 @@ function switchNeotree()
 		vim.cmd.Neotree("focus")
 	end
 end
-
 --Search and replace
 vim.keymap.set("n", "<leader>ro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts)
 vim.keymap.set("n", "<leader>rw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts)
@@ -18,6 +17,20 @@ vim.keymap.set("v", "<C-s>", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>"
 vim.keymap.set("v", "<leader>rs", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts)
 vim.keymap.set("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts)
 
+-- Search spectre plugin
+vim.keymap.set("n", "<leader>sr", '<cmd>lua require("spectre").toggle()<CR>', {
+	desc = "Toggle Spectre",
+})
+vim.keymap.set("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+	desc = "Search current word",
+})
+vim.keymap.set("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+	desc = "Search current word",
+})
+vim.keymap.set("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+	desc = "Search on current file",
+})
+
 --Yank
 vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", { desc = "Yank" })
 
@@ -26,7 +39,7 @@ vim.keymap.set("n", "<leader>c", ":bp|sp|bn|bd<CR>", { desc = "Buffer close" })
 vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>")
 vim.keymap.set("n", "<s-Tab>", ":BufferLineCyclePrev<CR>")
 vim.keymap.set("n", "<leader>bc", ":bd<CR>", { desc = "Current buffer close" })
-vim.keymap.set("n", "<leader>bl", ":Buffer line Pick<CR>")
+vim.keymap.set("n", "<leader>bl", ":BufferLinePick<CR>")
 vim.keymap.set("n", "<leader>bd", ":BufferLinePickClose<CR>", { desc = "Buffer pick close" })
 vim.keymap.set("n", "<leader>ba", ":w|%bd|e#|bd#|NeoTreeShow<CR>", { desc = "Buffer close all except current" })
 vim.keymap.set("n", "<leader>bx", ":bufdo bp|sp|bn|bd<CR>", { desc = "Close all" })

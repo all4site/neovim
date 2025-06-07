@@ -8,6 +8,7 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 			"saadparwaiz1/cmp_luasnip",
+			-- "hrsh7th/vim-vsnip",
 
 			"dcampos/nvim-snippy",
 			"dcampos/cmp-snippy",
@@ -21,12 +22,6 @@ return {
 			local cmp = require("cmp")
 			local lspkind = require("lspkind")
 			local snippy = require("snippy")
-			local has_words_before = function()
-				unpack = unpack or table.unpack
-				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-				return col ~= 0
-					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-			end
 			cmp.setup({
 				formatting = {
 					format = lspkind.cmp_format({
@@ -103,7 +98,6 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					--{ name = 'luasnip' },
 					{ name = "snippy" },
 					{ name = "nvim_lsp" }, -- For vsnip users.
 				}, {

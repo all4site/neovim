@@ -7,8 +7,8 @@ snippet toc
 
 snippet tor
 	toRem(${1});
-
-
+snippet tr
+	toRem(${1})
 snippet hover
 	&:hover {
 		${1}
@@ -18,4 +18,7 @@ snippet med "media query"
 	@include mediaSize(${1}) {
     ${2}	
 	}
+
+snippet ts "transition with params"
+	@include transition(${1});
 
