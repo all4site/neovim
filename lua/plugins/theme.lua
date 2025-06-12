@@ -5,10 +5,13 @@ return {
 		vim.cmd([[colorscheme onedark]])
 		require("onedark").setup({
 			style = "deep",
-			transparent = true,
-			-- lualine = {
-			--   transparent = true, -- lualine center bar transparency
-			-- },
+			transparent = false,
+			highlights = {
+				NeoTreeWinSeparator = { fg = "#333b50", bg = "NONE" },
+				NeoTreeNormal = { bg = "#1a212e" },
+				NeoTreeNormalNC = { bg = "#1a212e" },
+				NeoTreeEndOfBuffer = { bg = "#1a212e" },
+			},
 		})
 
 		require("onedark").load()
